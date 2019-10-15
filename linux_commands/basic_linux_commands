@@ -1,0 +1,42 @@
+Basic Linux commands
+
+
+Ls
+Sudo
+Home / root
+Mkdir
+Man
+ssh
+SSH keys - How to generate and how to use
+PEM File
+authorized_keys
+Visudo
+ps
+Kill
+what is socket file
+Cd
+tail
+Head
+cat
+Pwd
+.bashrc
+What is apt-get?
+What is apt cache?
+How to install a package? 
+Using apt-get
+Using dep
+How to Remove/uninstall a package?
+
+What are Soft link / Hard link? How to create them
+How to edit a file using vi/vim command? How to save/delete 
+
+
+
+ECHO  (( print))
+EXPORT
+PATH
+CURL
+CRONTAB (System vs User Crontab)
+/etc/environment
+Different places where you can set environment variables.
+
