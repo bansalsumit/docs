@@ -1,0 +1,115 @@
+1 .     -                        for current directory
+2 ..    -                        parent directory
+3 linux command --help     -     for more information about any other commands.
+
+4 ls      -       List information about the FILEs (the current directory by default).ls is a Linux shell command that lists directory
+                  contents of files and directories.
+  ls path -       for showing list of specific directory.
+  ls -a   -       list all files including hidden file starting with '.'
+  ls -l   -       list with long format - show permissions.
+  ls -lh  -       list long format with readable file size
+  ls -lah
+
+5 sudo    -       execute a command as another user(by default, as the superuser) It prompts you for your personal password and confirms
+                  your request to execute a command by checking a file, called sudoers.
+  ex: sudo ls
+6 su    -         The su command allows you to become another user. The su command is used to become another user during a login session.
+                  Invoked without a username, su defaults to becoming the superuser. Additional arguments may be provided after the username,
+                  in which case they are supplied to the user's login shell. In particular, an argument of -c will cause the next argument to
+                  be treated as a command by most command interpreters. The command will be executed by the shell specified in /etc/passwd for
+                  the target user.
+  ex: su user -c command
+
+7 sudoers    -   The sudoers file located at: /etc/sudoers, contains the rules that users must follow when using the sudo command.
+                 To open this file use sudo visudo. It open file in vi editor.
+
+8 Home/root  -   The /root directory is the home directory of the root account. It is also referred to as the root user's home directory
+                 (and not as the root directory).
+                 A home directory, also called a login directory, is a directory on a Unix-like operating system that serves as the repository
+                 for a user's personal files (including configuration files), directories and programs. It is also the directory that a user
+                 is first in after logging into the system.
+  ex: /  -   for root's home directory 
+  ex: ~  -   for user's home directory
+
+9 Mkdir       -  make directories
+
+10 man        -  man command in Linux is used to display the user manual of any command that we can run on the terminal. 
+
+11               shell It is not a command. a shell is a user interface for access to an operating system's services. In general,
+                 operating system shells use either a command-line interface (CLI) or graphical user interface (GUI), depending on a
+                 computer's role and particular operation. It is named a shell because it is the outermost layer around the operating system
+                 kernel.
+12 ssh        -  ssh stands for “Secure Shell”. It is a protocol used to securely connect to a remote server/system. ssh is secure in the
+                 sense that it transfers the data in encrypted form between the host and the client. It transfers inputs from the client to
+                 the host and relays back the output. ssh runs at TCP/IP port 22.
+
+   syntax: ssh user_name@host(IP/Domain_name)
+
+             host - refers to the machine which can be a computer or a router that is being accessed.
+                    It can be an IP address (e.g. 192.168.1.24) or domain name(e.g. www.domainname.com).
+ 
+                 Using a public-private key pair or SSH key pair to login into the remote host is more secure as compared to using passwords.
+
+    For generating public-private keys use the command:
+      ssh-keygen
+
+   The private key must remain hidden while the public key must be copied to the remote host.
+   After copying the public key to the remote host the connection will be established using SSH keys and not the password.
+
+   to generate keys first create .ssh file in user home directory
+   It genearte two files id_rsa(private file) and id_rsa.pub(public file)
+   ssh-keygen -t rsa -C "your_email@example.com"
+
+  ssh-keygen will generate an RSA key for use in SSH protocol 2 connections
+
+  Public key authentication works like this:
+
+    1. Generate a key pair.
+    2. Give someone (or a server) the public key.
+    3. Later, anytime you want to authenticate, the person (or the server) asks you to prove you have the private key that corresponds
+       to the public key.
+    4. You prove you have the private key.
+then communication start
+
+13 PEM file   -     PEM or Privacy Enhanced Mail is a Base64 encoded DER certificate.
+                    PEM certificates are frequently used for web servers as they can easily be translated into readable data using a simple
+                    text editor.  Generally when a PEM encoded file is opened in a text editor, it contains very distinct headers and footers.
+   pem file extension is .pem. Defined in RFCs 1421. 
+   Pem file include
+     1 Private Key
+     2 Server Certificate (crt, puplic key)
+     3 (optional) Intermediate CA and/or bundles if signed by a 3rd party.
+
+  How to Connect to Amazon EC2 Remotely Using SSH:
+
+   1 Download the .pem file.
+   2 In Amazon Dashboard choose "Instances" from the left side bar, and then select the instance you would like to connect to.
+   3 Click on "Actions", then select "Connect"
+   4 Click on "Connect with a Standalone SSH Client"
+   5 Open up a Terminal window
+   6 Create a directory:
+
+   7 # mkdir -p ~/.ssh
+     Move the downloaded .pem file to the .ssh directory we just created:
+
+   8 # mv ~/Downloads/ec2private.pem ~/.ssh
+     Change the permissions of the .pem file so only the root user can read it:
+
+   9 # chmod 400 ~/.ssh/ec2private.pem
+      Create a config file:
+
+   10 # vim ~/.ssh/config
+     Enter the following text into that config file:
+
+      Host *amazonaws.com
+      IdentityFile ~/.ssh/ec2private.pem
+     User ec2-user
+    Save that file.
+
+   11 Use the ssh command with your public DNS hostname to connect to your instance.
+     e.g.:
+
+    # ssh ec2-54-23-23-23-34.example.amazonaws.com
+
+   For connection with AWS
+   ssh -i ~/ec2.pem ubuntu@12.34.56.78
